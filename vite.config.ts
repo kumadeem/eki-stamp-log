@@ -10,7 +10,7 @@ export default defineConfig({
       includeAssets: ["app-icon.png", "favicon.svg"],
       manifest: {
         name: "香織の駅巡り",
-        short_name: "駅巡り",
+        short_name: "香織の駅巡り",
         description: "駅巡りの訪問記録アプリです。",
         theme_color: "#4a2b18",
         background_color: "#f7efe2",
