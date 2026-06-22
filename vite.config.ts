@@ -9,31 +9,33 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["app-icon.png"],
       manifest: {
-        name: "駅スタンプ帳",
-        short_name: "駅スタンプ",
+        name: "香織の駅巡り",
+        short_name: "駅巡り",
         description: "東京23区内のJR駅を巡って、訪問済みの駅を記録するアプリです。",
-        theme_color: "#4f46e5",
-        background_color: "#f5f7fb",
+        theme_color: "#4a2b18",
+        background_color: "#f7efe2",
         display: "standalone",
+        orientation: "portrait",
         start_url: "/",
         scope: "/",
         icons: [
           {
-            src: "/icons.svg",
-            sizes: "192x192",
-            type: "image/svg+xml",
-            purpose: "any maskable"
+            src: "/app-icon.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "any"
+          },
+          {
+            src: "/app-icon.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "maskable"
           }
         ]
+      },
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,webp}"]
       }
     })
   ]
 });
-icons: [
-  {
-    src: "/app-icon.png",
-    sizes: "512x512",
-    type: "image/png",
-    purpose: "any maskable"
-  }
-]
