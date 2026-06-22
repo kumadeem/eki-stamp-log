@@ -109,7 +109,8 @@ function createInitialStations(): Station[] {
 function mergeSavedStations(savedStations: Station[]): Station[] {
   return MASTER_STATIONS.map((masterStation) => {
     const savedStation = savedStations.find(
-      (station) => station.id === masterStation.id || station.name === masterStation.name
+      (station) =>
+        station.id === masterStation.id || station.name === masterStation.name
     );
 
     return {
@@ -216,52 +217,38 @@ function App() {
 
   if (screen === "menu") {
     return (
-      <main className="app">
-        <header className="header">
-          <div>
-            <p className="eyebrow">Tokyo 23 Wards JR Stamp Rally</p>
-            <h1>駅スタンプ帳</h1>
-            <p className="description">
-              東京23区内のJR駅を巡って、訪問済みの駅を記録できます。
-            </p>
-          </div>
-        </header>
+      <main className="app notebook-page history-page">
+        <div className="home-background" />
 
-        <section className="summary">
-          <div className="summary-card">
-            <span>対象駅数</span>
-            <strong>{stations.length}</strong>
+        <div className="home-overlay">
+          <div className="home-title-area">
+            <p className="home-subtitle">Tokyo 23 Wards JR Stamp Rally</p>
+            <h1>香織の駅巡り</h1>
           </div>
-          <div className="summary-card">
-            <span>訪問済み</span>
-            <strong>{visitedCount}</strong>
-          </div>
-          <div className="summary-card">
-            <span>達成率</span>
-            <strong>{completionRate}%</strong>
-          </div>
-        </section>
 
-        <section className="menu-grid">
-          <button className="menu-card" onClick={() => setScreen("register")}>
-            <span className="menu-icon">🚉</span>
-            <strong>駅を登録する</strong>
-            <small>東京23区内のJR駅から選んで訪問済みにします</small>
-          </button>
+          <div className="home-menu-buttons">
+            <button
+              className="floating-menu-button"
+              onClick={() => setScreen("register")}
+            >
+              駅の登録
+            </button>
 
-          <button className="menu-card" onClick={() => setScreen("history")}>
-            <span className="menu-icon">📖</span>
-            <strong>過去の訪問履歴を閲覧する</strong>
-            <small>これまで訪問済みにした駅とメモを見返します</small>
-          </button>
-        </section>
+            <button
+              className="floating-menu-button"
+              onClick={() => setScreen("history")}
+            >
+              訪問履歴
+            </button>
+          </div>
+        </div>
       </main>
     );
   }
 
   if (screen === "history") {
     return (
-      <main className="app">
+<main className="app notebook-page register-page">
         <button className="back-button" onClick={() => setScreen("menu")}>
           ← トップに戻る
         </button>
@@ -286,7 +273,10 @@ function App() {
             <p className="empty">まだ訪問済みの駅がありません。</p>
           ) : (
             historyStations.map((station) => (
-              <article key={station.id} className="station-card">
+<article
+  key={station.id}
+  className={`station-card ticket-card ${station.visited ? "visited-card" : ""}`}
+>
                 <div className="station-main">
                   <div>
                     <h3>✅ {station.name}駅</h3>
@@ -327,7 +317,7 @@ function App() {
       <header className="header">
         <div>
           <p className="eyebrow">Station Register</p>
-          <h1>駅を登録する</h1>
+          <h1>駅の登録</h1>
           <p className="description">
             東京23区内のJR駅から選んで、訪問済みとして記録できます。
           </p>
@@ -378,7 +368,10 @@ function App() {
         </p>
 
         {filteredStations.map((station) => (
-          <article key={station.id} className="station-card">
+<article
+  key={station.id}
+  className={`station-card ticket-card ${station.visited ? "visited-card" : ""}`}
+>
             <div className="station-main">
               <div>
                 <h3>
@@ -411,4 +404,5 @@ function App() {
     </main>
   );
 }
+
 export default App;
