@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["icons.svg"],
+      includeAssets: ["app-icon.png"],
       manifest: {
         name: "駅スタンプ帳",
         short_name: "駅スタンプ",
@@ -29,3 +29,11 @@ export default defineConfig({
     })
   ]
 });
+icons: [
+  {
+    src: "/app-icon.png",
+    sizes: "512x512",
+    type: "image/png",
+    purpose: "any maskable"
+  }
+]
